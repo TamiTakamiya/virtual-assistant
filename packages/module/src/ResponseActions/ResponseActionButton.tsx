@@ -16,6 +16,10 @@ export interface ResponseActionButtonProps {
   tooltipContent?: string;
   /** Props to control the PF Tooltip component */
   tooltipProps?: TooltipProps;
+  /** Text to be displayed */
+  text?: string;
+  /** Button variant */
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'danger' | 'warning' | 'link' | 'plain' | 'control' | 'stateful';
 }
 
 export const ResponseActionButton: React.FunctionComponent<ResponseActionButtonProps> = ({
@@ -25,7 +29,9 @@ export const ResponseActionButton: React.FunctionComponent<ResponseActionButtonP
   isDisabled,
   onClick,
   tooltipContent,
-  tooltipProps
+  tooltipProps,
+  text='',
+  variant='plain'
 }) => (
   <Tooltip
     id={`pf-chatbot__tooltip-response-action-${tooltipContent}`}
@@ -38,18 +44,18 @@ export const ResponseActionButton: React.FunctionComponent<ResponseActionButtonP
     {...tooltipProps}
   >
     <Button
-      variant="plain"
+      variant={variant}
       className={`pf-chatbot__button--response-action ${className ?? ''}`}
       aria-label={ariaLabel ?? tooltipContent}
       icon={
-        <Icon isInline size="lg">
+        icon && <Icon isInline size="lg">
           {icon}
-        </Icon>
+        </Icon> 
       }
       isDisabled={isDisabled}
       onClick={onClick}
       size="sm"
-    ></Button>
+    >{text}</Button>
   </Tooltip>
 );
 

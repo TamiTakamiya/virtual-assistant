@@ -63,6 +63,8 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   quickResponses?: QuickResponse[];
   /** Props for quick responses container */
   quickResponseContainerProps?: Omit<LabelGroupProps, 'ref'>;
+  /** Class name for the response action container*/
+  actionsClassName?: string;
 }
 
 export const Message: React.FunctionComponent<MessageProps> = ({
@@ -83,6 +85,7 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   codeBlockProps,
   quickResponses,
   quickResponseContainerProps = { numLabels: 5 },
+  actionsClassName,
   ...props
 }: MessageProps) => {
   // Configure default values
@@ -143,7 +146,7 @@ export const Message: React.FunctionComponent<MessageProps> = ({
               </Markdown>
             )}
             {!isLoading && sources && <SourcesCard {...sources} />}
-            {!isLoading && actions && <ResponseActions actions={actions} />}
+            {!isLoading && actions && <ResponseActions actions={actions} className={actionsClassName}/>}
             {!isLoading && quickResponses && (
               <LabelGroup
                 className={`pf-chatbot__message-quick-response ${quickResponseContainerProps?.className}`}

@@ -24,6 +24,10 @@ export interface ActionProps {
   tooltipProps?: TooltipProps;
   /** Icon for custom response action */
   icon?: React.ReactNode;
+  /** Button variant */
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'danger' | 'warning' | 'link' | 'plain' | 'control' | 'stateful';
+  /** Button text */
+  text?: string;
 }
 
 export interface ResponseActionProps {
@@ -35,12 +39,14 @@ export interface ResponseActionProps {
     share?: ActionProps;
     listen?: ActionProps;
   };
+  /** Class name for the response action container*/
+  className?: string;
 }
 
-export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ actions }) => {
+export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ actions, className='pf-chatbot__response-actions' }) => {
   const { positive, negative, copy, share, listen, ...additionalActions } = actions;
   return (
-    <div className="pf-chatbot__response-actions">
+    <div className={className}>
       {positive && (
         <ResponseActionButton
           ariaLabel={positive.ariaLabel ?? 'Good response'}
@@ -50,6 +56,8 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
           tooltipContent={positive.tooltipContent ?? 'Good response'}
           tooltipProps={positive.tooltipProps}
           icon={<OutlinedThumbsUpIcon />}
+          variant={positive.variant}
+          text={positive.text}
         ></ResponseActionButton>
       )}
       {negative && (
@@ -61,6 +69,8 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
           tooltipContent={negative.tooltipContent ?? 'Bad response'}
           tooltipProps={negative.tooltipProps}
           icon={<OutlinedThumbsDownIcon />}
+          variant={negative.variant}
+          text={negative.text}
         ></ResponseActionButton>
       )}
       {copy && (
@@ -72,6 +82,8 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
           tooltipContent={copy.tooltipContent ?? 'Copy'}
           tooltipProps={copy.tooltipProps}
           icon={<OutlinedCopyIcon />}
+          variant={copy.variant}
+          text={copy.text}
         ></ResponseActionButton>
       )}
       {share && (
@@ -83,6 +95,8 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
           tooltipContent={share.tooltipContent ?? 'Share'}
           tooltipProps={share.tooltipProps}
           icon={<ExternalLinkAltIcon />}
+          variant={share.variant}
+          text={share.text}
         ></ResponseActionButton>
       )}
       {listen && (
@@ -94,6 +108,8 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
           tooltipContent={listen.tooltipContent ?? 'Listen'}
           tooltipProps={listen.tooltipProps}
           icon={<VolumeUpIcon />}
+          variant={listen.variant}
+          text={listen.text}
         ></ResponseActionButton>
       )}
       {Object.keys(additionalActions).map((action) => (
@@ -106,6 +122,8 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
           tooltipContent={additionalActions[action]?.tooltipContent}
           tooltipProps={additionalActions[action]?.tooltipProps}
           icon={additionalActions[action]?.icon}
+          variant={additionalActions[action]?.variant}
+          text={additionalActions[action]?.text}
         />
       ))}
     </div>

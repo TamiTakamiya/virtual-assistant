@@ -13,27 +13,52 @@ export const CustomActionExample: React.FunctionComponent = () => (
     avatar={patternflyAvatar}
     content="Example with custom actions"
     actions={{
-      regenerate: {
-        ariaLabel: 'Regenerate',
-        // eslint-disable-next-line no-console
-        onClick: () => console.log('Clicked regenerate'),
-        tooltipContent: 'Regenerate',
-        icon: <RedoIcon />
+      // regenerate: {
+      //   ariaLabel: 'Regenerate',
+      //   // eslint-disable-next-line no-console
+      //   onClick: () => console.log('Clicked regenerate'),
+      //   tooltipContent: 'Regenerate',
+      //   icon: <RedoIcon />
+      // },
+      // download: {
+      //   ariaLabel: 'Download',
+      //   // eslint-disable-next-line no-console
+      //   onClick: () => console.log('Clicked download'),
+      //   tooltipContent: 'Download',
+      //   icon: <DownloadIcon />
+      // },
+      // info: {
+      //   ariaLabel: 'Info',
+      //   // eslint-disable-next-line no-console
+      //   onClick: () => console.log('Clicked info'),
+      //   tooltipContent: 'Info',
+      //   icon: <InfoCircleIcon />
+      // }
+      resolved: { 
+        onClick: () => console.log('Resolved'), 
+        variant: "secondary", 
+        text: 'Resolved',
+        tooltipContent: 'Resolved'
       },
-      download: {
-        ariaLabel: 'Download',
-        // eslint-disable-next-line no-console
-        onClick: () => console.log('Clicked download'),
-        tooltipContent: 'Download',
-        icon: <DownloadIcon />
+      helpful: { 
+        onClick: () => console.log('Helpful'), 
+        variant: "secondary", 
+        text: 'Helpful',
+        tooltipContent: 'Helpful'
       },
-      info: {
-        ariaLabel: 'Info',
-        // eslint-disable-next-line no-console
-        onClick: () => console.log('Clicked info'),
-        tooltipContent: 'Info',
-        icon: <InfoCircleIcon />
-      }
+      notHelpful: { 
+        onClick: () => console.log('Not Helpful'), 
+        variant: "secondary", 
+        text: 'Not Helpful',
+        tooltipContent: 'Not Helpful'
+      },
+      notRelevant: { 
+        onClick: () => console.log('Not Relevant'), 
+        variant: "secondary", 
+        text: 'Not Relevant',
+        tooltipContent: 'Not Relevant'
+      },            
     }}
+    actionsClassName="pf-v6-l-flex pf-m-column-gap-sm"
   />
 );
